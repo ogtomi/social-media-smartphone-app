@@ -1,22 +1,24 @@
 import * as React from "react";
 
-import { StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { Text, View } from "../components/Themed";
 
-import User from "../components/User/UserProfileInfo"
+import UserBar from "../components/User/UserBar";
 
 export default class ProfileTabScreen extends React.Component {
   render() {
-    return(
-        <User />
-    )}
+    return (
+      <SafeAreaView style={styles.container}>
+        <UserBar />
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 60,
-    alignSelf: "center",
+    marginTop: 40,
     fontSize: 40,
   },
 });

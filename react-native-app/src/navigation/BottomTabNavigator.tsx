@@ -8,7 +8,7 @@ import useColorScheme from '../../hooks/useColorScheme';
 import WallTabScreen from '../screens/WallTabScreen';
 import EventTabScreen from '../screens/EventTabScreen';
 import PeopleTabScreen from '../screens/PeopleTabScreen'
-import UserProfileInfo from '../components/User/UserProfileInfo'
+import UserProfileInfo from '../components/User/UserBar'
 import MessagesTabScreen from '../screens/MessageTabScreen'
 import ProfileTabScreen from '../screens/ProfileTabScreen'
 import { BottomTabParamList, WallTabParamList, EventTabParamList, PeopleTabParamList, MessagesTabParamList, ProfileTabParamList } from '../../types';
