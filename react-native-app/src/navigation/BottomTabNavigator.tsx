@@ -3,14 +3,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
+import Colors from '../../constants/Colors';
+import useColorScheme from '../../hooks/useColorScheme';
 import WallTabScreen from '../screens/WallTabScreen';
 import EventTabScreen from '../screens/EventTabScreen';
 import PeopleTabScreen from '../screens/PeopleTabScreen'
+import UserProfileInfo from '../components/User/UserProfileInfo'
 import MessagesTabScreen from '../screens/MessageTabScreen'
 import ProfileTabScreen from '../screens/ProfileTabScreen'
-import { BottomTabParamList, WallTabParamList, EventTabParamList, PeopleTabParamList, MessagesTabParamList, ProfileTabParamList } from '../types';
+import { BottomTabParamList, WallTabParamList, EventTabParamList, PeopleTabParamList, MessagesTabParamList, ProfileTabParamList } from '../../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
