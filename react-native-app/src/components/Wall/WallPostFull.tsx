@@ -1,57 +1,65 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Dimensions } from "react-native";
+import { StyleSheet, Image } from "react-native";
 
-import Colors from "../../constants/Colors";
-import { Text, View } from "./Themed";
+import Colors from "../../../constants/Colors";
+import { Text, View } from "../Themed";
 
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+export interface IWallPostFullProps {
+  username: string;
+  contentText: string;
+  //contentImage: Image;
+  likesNum: number;
+  commentsNum: number;
+  route: any;
+}
 
-export default function WallPost(props: any) {
-  return (
-    <TouchableOpacity>
-      <View style={styles.wallPostBox}>
+export default class WallPostFull extends React.Component<IWallPostFullProps> {
+  render() {
+    const {
+      username,
+      contentText,
+      likesNum,
+      commentsNum,
+    } = this.props.route.params;
+
+    return (
+      <View
+        style={styles.wallPostBox}
+        //lightColor="rgba(255,255,255,1)"
+        darkColor="rgba(45,45,45,0.9)"
+      >
         <Text
           style={styles.wallPostTop}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
-          Nazwa eventu {props.eventName}:
+          User {username}:
         </Text>
         <Text
           style={styles.wallPostContent}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
-          {props.content}
+          {contentText}
         </Text>
         <Text
           style={styles.wallPostBottom}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
-          Ile osób będzie: {props.peopleNum}
+          Likes: {likesNum} Comments: {commentsNum}
         </Text>
       </View>
-    </TouchableOpacity>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   wallPostBox: {
-    borderColor: "grey",
-    borderWidth: 3,
-    borderRadius: 5,
-
     paddingTop: 10,
     paddingBottom: 10,
-
     marginTop: 5,
     marginBottom: 5,
-    marginLeft: Math.round(windowWidth * 0.02),
-    marginRight: Math.round(windowWidth * 0.02),
-
-    maxWidth: Math.round(windowWidth * 0.4),
   },
   wallPostTop: {
     marginLeft: 5,
