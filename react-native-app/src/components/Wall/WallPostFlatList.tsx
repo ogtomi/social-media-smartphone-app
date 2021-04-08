@@ -1,90 +1,120 @@
 import * as React from "react";
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
-import EventPost from "../components/Events/EventPost";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+import WallPost from "../Wall/WallPost";
+import { Text, View } from "../Themed";
 
 const DATA = [
   {
     id: "1",
-    eventName: "Chlanie",
+    user: "Pudzian",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "2",
-    eventName: "Chlanie",
+    user: "Makłowicz",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "3",
-    eventName: "Chlanie",
+    user: "Najman",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "4",
-    eventName: "Chlanie",
+    user: "Kowalski",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "5",
-    eventName: "Chlanie",
+    user: "Kowalski",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "6",
-    eventName: "Chlanie",
+    user: "Kowalski",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "7",
-    eventName: "Chlanie",
+    user: "Kowalski",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "8",
-    eventName: "Chlanie",
+    user: "Kowalski",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
   {
     id: "9",
-    eventName: "Chlanie",
+    user: "Kowalski",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    commentsNum: 4,
+    likesNum: 3,
   },
 ];
 
-export default class EventTabScreen extends React.Component {
+export interface IWallPostFlatListProps {
+  navigation: any;
+}
+
+export default class WallPostFlatList extends React.Component<IWallPostFlatListProps> {
   render() {
     return (
       <FlatList
         style={styles.container}
-        contentContainerStyle={styles.contentContainer}
         data={DATA}
         renderItem={({ item }) => (
-          <EventPost
-            eventName={item.eventName}
-            contentText={item.content}
-            peopleNum={item.peopleNum}
-          />
+          <View lightColor="rgba(242,242,242,1)" darkColor="rgba(0,0,0,1)">
+            <TouchableOpacity
+              //activeOpacity={1}
+              delayPressIn={100}
+              onPress={() =>
+                this.props.navigation.navigate("WallPostFull", {
+                  username: item.user,
+                  contentText: item.content,
+                  commentsNum: item.commentsNum,
+                  likesNum: item.likesNum,
+                })
+              }
+            >
+              <WallPost
+                username={item.user}
+                contentText={item.content}
+                commentsNum={item.commentsNum}
+                likesNum={item.likesNum}
+              />
+            </TouchableOpacity>
+          </View>
         )}
         keyExtractor={(item) => item.id}
-        numColumns={2}
       />
     );
   }
@@ -93,11 +123,5 @@ export default class EventTabScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    flexWrap: "wrap",
-    alignContent: "space-around",
-  },
-  contentContainer: {
-    //alignItems: "center",
-    justifyContent: "space-around",
   },
 });

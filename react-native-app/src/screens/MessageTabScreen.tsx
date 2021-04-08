@@ -3,8 +3,10 @@ import { StyleSheet } from "react-native";
 
 import { Text, View } from "../components/Themed";
 
-export default function MessageTabScreen() {
-  return <Text style={styles.container}>Test</Text>;
+export default class MessageTabScreen extends React.Component {
+  render() {
+    return <Text style={styles.container}>Test</Text>;
+  }
 }
 
 const styles = StyleSheet.create({
