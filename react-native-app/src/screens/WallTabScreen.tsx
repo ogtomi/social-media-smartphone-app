@@ -1,14 +1,15 @@
 import * as React from "react";
-import { StyleSheet, FlatList, useColorScheme } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import useColorScheme from "../../hooks/useColorScheme";
 
 import WallPostFlatList from "../components/Wall/WallPostFlatList";
-import WallPostFull from "../components/Wall/WallPostFull";
+import WallPostFull from "../components/Wall/WallPostFullVIew/WallPostFull";
 
 const DATA = [
   {
@@ -87,34 +88,28 @@ const DATA = [
 
 const Stack = createStackNavigator();
 
-export interface IWallTabScreenProps {
-  route: any;
-}
+export default function WallTabScreen() {
+  var colorSchemeParam = useColorScheme();
 
-export default class WallTabScreen extends React.Component<IWallTabScreenProps> {
-  render() {
-    //const test = useColorScheme();
-    const currentThemeColor = this.props.route.params.colorSchemeParam;
-    return (
-      <NavigationContainer
-        independent={true}
-        theme={currentThemeColor === "dark" ? DarkTheme : DefaultTheme}
-      >
-        <Stack.Navigator initialRouteName="WallPostFlatList">
-          <Stack.Screen
-            name="WallPostFlatList"
-            component={WallPostFlatList}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="WallPostFull"
-            component={WallPostFull}
-            options={{ title: "" }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+  return (
+    <NavigationContainer
+      independent={true}
+      theme={colorSchemeParam === "dark" ? DarkTheme : DefaultTheme}
+    >
+      <Stack.Navigator initialRouteName="WallPostFlatList">
+        <Stack.Screen
+          name="WallPostFlatList"
+          component={WallPostFlatList}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WallPostFull"
+          component={WallPostFull}
+          options={{ title: "" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({

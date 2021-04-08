@@ -1,9 +1,11 @@
 import * as React from "react";
 import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
-import { StackNavigationProp } from "@react-navigation/stack";
+import Colors from "../../../constants/Colors";
 
-import WallPost from "../Wall/WallPost";
+import WallPost from "./WallPost";
+import WallPostBottomBar from "./WallPostBottomBar";
+
 import { Text, View } from "../Themed";
 
 const DATA = [
@@ -112,6 +114,13 @@ export default class WallPostFlatList extends React.Component<IWallPostFlatListP
                 likesNum={item.likesNum}
               />
             </TouchableOpacity>
+            <View
+              //lightColor="rgba(242,242,242,0.9)"
+              darkColor={Colors["dark"].wallPostBackgroundColor}
+              style={styles.buttonStyles}
+            >
+              <WallPostBottomBar />
+            </View>
           </View>
         )}
         keyExtractor={(item) => item.id}
@@ -123,5 +132,11 @@ export default class WallPostFlatList extends React.Component<IWallPostFlatListP
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
+  },
+  buttonStyles: {
+    paddingRight: 8,
+    paddingLeft: 8,
+    paddingBottom: 8,
+    marginBottom: 8,
   },
 });
