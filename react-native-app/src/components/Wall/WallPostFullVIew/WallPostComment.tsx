@@ -29,7 +29,7 @@ export default class WallPostComment extends React.Component<IWallPostCommentPro
         >
           <Avatar.Image
             size={imageSize}
-            source={require("../User/pictures/4-ea52435acc6cf488e05e75c209b2bd.jpg")}
+            source={require("../../User/pictures/4-ea52435acc6cf488e05e75c209b2bd.jpg")}
           />
           <Text
             style={styles.wallCommentAuthor}
