@@ -42,13 +42,12 @@ const styles = StyleSheet.create({
 
   stats: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 30
+    justifyContent: "space-between"
   },
 
   info: {
     marginLeft: 20,
-    height: "90%",
+    height: "80%",
     width: "60%",
     flexDirection: "column",
     justifyContent: "center"
