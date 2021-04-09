@@ -21,11 +21,8 @@ export default class ProfileTabScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    flex: 1,
+    marginTop: "10%",
     fontSize: 40,
-  },
-
-  switchBar: {
-    justifyContent: "space-evenly",
-  },
+  }
 });
