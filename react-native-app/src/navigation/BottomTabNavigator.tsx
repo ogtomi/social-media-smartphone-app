@@ -36,7 +36,6 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
-        initialParams={{ colorSchemeParam: colorScheme }}
       />
       <BottomTab.Screen
         name="Events"
@@ -85,14 +84,13 @@ function TabBarIcon(props: {
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const WallTabStack = createStackNavigator<WallTabParamList>();
 
-function WallTabNavigator({ route }: { route: any }) {
+function WallTabNavigator() {
   return (
     <WallTabStack.Navigator>
       <WallTabStack.Screen
         name="WallTabScreen"
         component={WallTabScreen}
         options={{ headerShown: false }}
-        initialParams={{ colorSchemeParam: route.params.colorSchemeParam }}
       />
     </WallTabStack.Navigator>
   );
