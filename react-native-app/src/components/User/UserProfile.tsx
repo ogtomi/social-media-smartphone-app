@@ -1,10 +1,14 @@
-import React from 'react'
-import { Text } from '../Themed'
+import React from "react";
+import { SafeAreaView } from "react-native";
+import { Text, View } from "../Themed";
+import GenderButton from "./GenderButton";
 
 export default class UserProfile extends React.Component {
-    render() {
-        return(
-            <Text>Whatever</Text>
-        )
-    }
+  render() {
+    return (
+      <SafeAreaView>
+        <GenderButton />
+      </SafeAreaView>
+    );
+  }
 }
