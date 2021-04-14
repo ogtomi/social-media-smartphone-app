@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Button } from "react-native-paper";
-import Colors from "../../../constants/Colors";
+import Colors from "../../../../constants/Colors";
 
-import { Text, View } from "../Themed";
+import { Text, View } from "../../Themed";
 
 export default class WallPostBottomBar extends React.Component<
   {},
@@ -40,7 +40,7 @@ export default class WallPostBottomBar extends React.Component<
       <View
         style={styles.container}
         //lightColor="rgba(242,242,242,0.9)"
-        darkColor={Colors["dark"].wallPostBackgroundColor}
+        darkColor={Colors["dark"].postBackgroundColor}
       >
         <Button
           style={styles.buttonLikeStyle}

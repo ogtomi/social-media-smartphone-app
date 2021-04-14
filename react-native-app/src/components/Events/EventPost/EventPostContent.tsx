@@ -1,16 +1,15 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 
-import Colors from "../../../constants/Colors";
-import { Text, View } from "../Themed";
-import WallPostAuthor from "./WallPostAuthor";
+import Colors from "../../../../constants/Colors";
+import { Text, View } from "../../Themed";
 
-export interface IWallPostContentProps {
+export interface IEventPostContentProps {
   contentText: string;
   //contentImage: Image;
 }
 
-export default class WallPostContent extends React.Component<IWallPostContentProps> {
+export default class EventPostContent extends React.Component<IEventPostContentProps> {
   render() {
     const contentText = this.props.contentText;
 
@@ -18,10 +17,10 @@ export default class WallPostContent extends React.Component<IWallPostContentPro
       <View
         style={styles.container}
         //lightColor="rgba(242,242,242,0.9)"
-        darkColor={Colors["dark"].wallPostBackgroundColor}
+        darkColor={Colors["dark"].postBackgroundColor}
       >
         <Text
-          style={styles.wallPostContent}
+          style={styles.eventPostContent}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     //marginTop: 5,
     marginBottom: 5,
   },
-  wallPostContent: {
+  eventPostContent: {
     //marginLeft: 5,
     //fontSize: 20,
     //fontWeight: "bold",

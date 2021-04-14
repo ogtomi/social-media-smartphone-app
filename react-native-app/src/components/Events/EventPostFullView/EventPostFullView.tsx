@@ -4,9 +4,8 @@ import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 import Colors from "../../../../constants/Colors";
-import WallPostFullHeader from "./WallPostFullHeader";
-import WallPostComment from "./WallPostComment";
-
+import EventPostFullViewHeader from "./EventPostFullViewHeader";
+import EventPostComment from "./EventPostComment";
 import { Text, View } from "../../Themed";
 
 const DATA = [
@@ -48,7 +47,7 @@ const DATA = [
   },
 ];
 
-export interface IWallPostFullProps {
+export interface IEventPostFullViewProps {
   //wallPostId: number;
   username: string;
   contentText: string;
@@ -58,25 +57,27 @@ export interface IWallPostFullProps {
   route: any;
 }
 
-export default class WallPostFull extends React.Component<IWallPostFullProps> {
+export default class EventPostFullView extends React.Component<IEventPostFullViewProps> {
   render() {
     const {
       username,
+      eventName,
       contentText,
-      likesNum,
-      commentsNum,
+      participantsNum,
+      eventDate,
     } = this.props.route.params;
 
     return (
       <FlatList
         ListHeaderComponent={
           <>
-            <View darkColor={Colors["dark"].wallPostBackgroundColor}>
-              <WallPostFullHeader
+            <View darkColor={Colors["dark"].postBackgroundColor}>
+              <EventPostFullViewHeader
                 username={username}
+                eventName={eventName}
                 contentText={contentText}
-                likesNum={likesNum}
-                commentsNum={commentsNum}
+                participantsNum={participantsNum}
+                eventDate={eventDate}
               />
             </View>
           </>
@@ -89,7 +90,7 @@ export default class WallPostFull extends React.Component<IWallPostFullProps> {
             lightColor="rgba(242,242,242,1)"
             darkColor="rgba(0,0,0,1)"
           >
-            <WallPostComment username={item.user} contentText={item.content} />
+            <EventPostComment username={item.user} contentText={item.content} />
           </View>
         )}
         keyExtractor={(item) => item.id}

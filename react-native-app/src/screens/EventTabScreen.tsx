@@ -1,103 +1,103 @@
 import * as React from "react";
 import { StyleSheet, FlatList } from "react-native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import useColorScheme from "../../hooks/useColorScheme";
 
-import EventPost from "../components/Events/EventPost";
+import EventPostFlatList from "../components/Events/EventPost/EventPostFlatList";
+import EventPostFullView from "../components/Events/EventPostFullView/EventPostFullView";
 
 const DATA = [
   {
     id: "1",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
   {
     id: "2",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
   {
     id: "3",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
   {
     id: "4",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
   {
     id: "5",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
   {
     id: "6",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
   {
     id: "7",
+    username: "Pudzian",
     eventName: "Chlanie",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
-  },
-  {
-    id: "8",
-    eventName: "Chlanie",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
-  },
-  {
-    id: "9",
-    eventName: "Chlanie",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    peopleNum: 1000,
+    participantsNum: 1000,
   },
 ];
 
-export default class EventTabScreen extends React.Component {
-  render() {
-    return (
-      <FlatList
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-        data={DATA}
-        renderItem={({ item }) => (
-          <EventPost
-            eventName={item.eventName}
-            contentText={item.content}
-            peopleNum={item.peopleNum}
-          />
-        )}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-      />
-    );
-  }
+const Stack = createStackNavigator();
+
+export default function WallTabScreen() {
+  var colorSchemeParam = useColorScheme();
+
+  return (
+    <NavigationContainer
+      independent={true}
+      theme={colorSchemeParam === "dark" ? DarkTheme : DefaultTheme}
+    >
+      <Stack.Navigator initialRouteName="EventPostFlatList">
+        <Stack.Screen
+          name="EventPostFlatList"
+          component={EventPostFlatList}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EventPostFullView"
+          component={EventPostFullView}
+          options={{ title: "" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    flexWrap: "wrap",
-    alignContent: "space-around",
-  },
-  contentContainer: {
-    //alignItems: "center",
-    justifyContent: "space-around",
   },
 });
