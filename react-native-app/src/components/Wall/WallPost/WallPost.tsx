@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 
-import Colors from "../../../constants/Colors";
-import { Text, View } from "../Themed";
+import Colors from "../../../../constants/Colors";
+import { Text, View } from "../../Themed";
 import WallPostAuthor from "./WallPostAuthor";
 import WallPostContent from "./WallPostContent";
 import WallPostStats from "./WallPostStats";
@@ -26,7 +26,7 @@ export default class WallPost extends React.Component<IWallPostProps> {
       <View
         style={styles.container}
         //lightColor="rgba(242,242,242,0.9)"
-        darkColor={Colors["dark"].wallPostBackgroundColor}
+        darkColor={Colors["dark"].postBackgroundColor}
       >
         <WallPostAuthor username={username} />
         <WallPostContent contentText={contentText} />

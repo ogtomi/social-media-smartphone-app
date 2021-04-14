@@ -4,11 +4,11 @@ import { StyleSheet, Image } from "react-native";
 import Colors from "../../../../constants/Colors";
 import { Text, View } from "../../Themed";
 
-import WallPostAuthor from "../WallPostAuthor";
-import WallPostContent from "../WallPostContent";
-import WallPostStats from "../WallPostStats";
+import WallPostAuthor from "../WallPost/WallPostAuthor";
+import WallPostContent from "../WallPost/WallPostContent";
+import WallPostStats from "../WallPost/WallPostStats";
 
-export interface IWallPostFullHeaderProps {
+export interface IWallPostFullViewHeaderProps {
   username: string;
   contentText: string;
   //contentImage: Image;
@@ -16,7 +16,7 @@ export interface IWallPostFullHeaderProps {
   commentsNum: number;
 }
 
-export default class WallPostFullHeader extends React.Component<IWallPostFullHeaderProps> {
+export default class WallPostFullViewHeader extends React.Component<IWallPostFullViewHeaderProps> {
   render() {
     const { username, contentText, likesNum, commentsNum } = this.props;
 
@@ -27,7 +27,7 @@ export default class WallPostFullHeader extends React.Component<IWallPostFullHea
         //darkColor="rgba(0,0,0,1)"
       >
         <View
-          darkColor={Colors["dark"].wallPostBackgroundColor}
+          darkColor={Colors["dark"].postBackgroundColor}
           style={styles.container}
         >
           <WallPostAuthor username={username} />

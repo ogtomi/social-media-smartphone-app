@@ -15,6 +15,6 @@ export default {
     tint: tintColorDark,
     tabIconDefault: "#ccc",
     tabIconSelected: tintColorDark,
-    wallPostBackgroundColor: "rgba(20,20,20,1)",
+    postBackgroundColor: "rgba(20,20,20,1)",
   },
 };

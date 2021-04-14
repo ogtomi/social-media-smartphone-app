@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 
-import Colors from "../../../constants/Colors";
-import { Text, View } from "../Themed";
-import WallPostAuthor from "./WallPostAuthor";
+import Colors from "../../../../constants/Colors";
+import { Text, View } from "../../Themed";
 
 export interface IWallPostStatsProps {
   likesNum: number;
@@ -19,7 +18,7 @@ export default class WallPostStats extends React.Component<IWallPostStatsProps> 
       <View
         style={styles.container}
         //lightColor="rgba(242,242,242,0.9)"
-        darkColor={Colors["dark"].wallPostBackgroundColor}
+        darkColor={Colors["dark"].postBackgroundColor}
       >
         <Text
           style={styles.wallPostStats}
