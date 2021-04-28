@@ -1,12 +1,12 @@
 import * as React from "react";
 import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
-import Colors from "../../../constants/Colors";
+import Colors from "../../../../constants/Colors";
 
 import WallPost from "./WallPost";
 import WallPostBottomBar from "./WallPostBottomBar";
 
-import { Text, View } from "../Themed";
+import { Text, View } from "../../Themed";
 
 const DATA = [
   {
@@ -99,7 +99,7 @@ export default class WallPostFlatList extends React.Component<IWallPostFlatListP
               //activeOpacity={1}
               delayPressIn={100}
               onPress={() =>
-                this.props.navigation.navigate("WallPostFull", {
+                this.props.navigation.navigate("WallPostFullView", {
                   username: item.user,
                   contentText: item.content,
                   commentsNum: item.commentsNum,
@@ -116,7 +116,7 @@ export default class WallPostFlatList extends React.Component<IWallPostFlatListP
             </TouchableOpacity>
             <View
               //lightColor="rgba(242,242,242,0.9)"
-              darkColor={Colors["dark"].wallPostBackgroundColor}
+              darkColor={Colors["dark"].postBackgroundColor}
               style={styles.buttonStyles}
             >
               <WallPostBottomBar />

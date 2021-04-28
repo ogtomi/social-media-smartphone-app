@@ -8,8 +8,8 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import useColorScheme from "../../hooks/useColorScheme";
 
-import WallPostFlatList from "../components/Wall/WallPostFlatList";
-import WallPostFull from "../components/Wall/WallPostFullVIew/WallPostFull";
+import WallPostFlatList from "../components/Wall/WallPost/WallPostFlatList";
+import WallPostFullView from "../components/Wall/WallPostFullVIew/WallPostFullView";
 
 const DATA = [
   {
@@ -103,8 +103,8 @@ export default function WallTabScreen() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="WallPostFull"
-          component={WallPostFull}
+          name="WallPostFullView"
+          component={WallPostFullView}
           options={{ title: "" }}
         />
       </Stack.Navigator>

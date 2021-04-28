@@ -7,13 +7,13 @@ import Colors from "../../../../constants/Colors";
 
 const imageSize = Math.round(Dimensions.get("window").height / 17);
 
-export interface IWallPostCommentProps {
+export interface IEventPostCommentProps {
   username: string;
   contentText: string;
   //avatar: Image;
 }
 
-export default class WallPostComment extends React.Component<IWallPostCommentProps> {
+export default class EventPostComment extends React.Component<IEventPostCommentProps> {
   render() {
     const { username, contentText } = this.props;
 
@@ -25,14 +25,14 @@ export default class WallPostComment extends React.Component<IWallPostCommentPro
       >
         <View
           darkColor={Colors["dark"].postBackgroundColor}
-          style={styles.wallCommentAndAvatar}
+          style={styles.eventCommentAndAvatar}
         >
           <Avatar.Image
             size={imageSize}
             source={require("../../User/pictures/4-ea52435acc6cf488e05e75c209b2bd.jpg")}
           />
           <Text
-            style={styles.wallCommentAuthor}
+            style={styles.eventCommentAuthor}
             lightColor="rgba(0,0,0,0.8)"
             darkColor="rgba(255,255,255,0.8)"
           >
@@ -40,7 +40,7 @@ export default class WallPostComment extends React.Component<IWallPostCommentPro
           </Text>
         </View>
         <Text
-          style={styles.wallCommentContent}
+          style={styles.eventCommentContent}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
@@ -58,18 +58,18 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
   },
-  wallCommentAndAvatar: {
+  eventCommentAndAvatar: {
     flexDirection: "row",
     justifyContent: "flex-start",
   },
-  wallCommentAuthor: {
+  eventCommentAuthor: {
     //paddingTop: usernamePaddingTop,
     alignSelf: "center",
     marginLeft: 8,
     fontSize: 18,
     fontWeight: "bold",
   },
-  wallCommentContent: {
+  eventCommentContent: {
     paddingTop: 5,
   },
 });
