@@ -7,7 +7,7 @@ import { USERS } from "../../../test_data/UserBaseArray";
 const CardRender = ({ card }) => {
   return (
     <View style={styles.card}>
-      <Image source={{uri: card.image}} />
+      <Image source={card.image} style={styles.image} />
       <Text style={styles.text}>
         {card.name} {card.surname}
       </Text>
@@ -41,12 +41,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#E8E8E8",
     justifyContent: "center",
-    backgroundColor: "blue",
+    backgroundColor: "#FFF",
   },
   text: {
     textAlign: "center",
-    fontSize: 50,
+    fontSize: 30,
     backgroundColor: "transparent",
+  },
+  image: {
+    width: 330,
+    flex: 1,
+    resizeMode: "stretch",
   },
 });
 
