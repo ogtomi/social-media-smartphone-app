@@ -1,12 +1,15 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+import Swipe from "../components/SwipeFeature/Swipe";
 
 import { Text, View } from "../components/Themed";
 
 export default class PeopleTabScreen extends React.Component {
   render() {
     return(
-      <Text style={styles.container}>Test</Text>
+      <SafeAreaView>
+        <Swipe />
+      </SafeAreaView>
     )
   }
 }
