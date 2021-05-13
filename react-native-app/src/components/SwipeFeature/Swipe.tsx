@@ -31,54 +31,57 @@ const Swipe = () => {
 
   return (
     <View style={styles.container}>
-      <Swiper
-        cards={USERS}
-        renderCard={(card) => <CardRender card={card} />}
-        cardIndex={index}
-        onSwiped={onSwiped}
-        stackSize={3}
-        disableBottomSwipe
-        animateOverlayLabelsOpacity
-        animateCardOpacity
-        overlayLabels={{
-          left: {
-            title: 'NOPE',
-            style: {
-              label: {
-                backgroundColor: '#FE3C72',
-                color: '#FFF',
-                fontSize: 24
+      <View style={styles.swiperContainer}>
+        <Swiper
+          cards={USERS}
+          renderCard={(card) => <CardRender card={card} />}
+          cardIndex={index}
+          onSwiped={onSwiped}
+          stackSize={3}
+          disableBottomSwipe
+          animateOverlayLabelsOpacity
+          animateCardOpacity
+          overlayLabels={{
+            left: {
+              title: "NOPE",
+              style: {
+                label: {
+                  backgroundColor: "#FE3C72",
+                  color: "#FFF",
+                  fontSize: 24,
+                },
+                wrapper: {
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                  justifyContent: "flex-start",
+                  marginTop: 10,
+                  marginLeft: -10,
+                },
               },
-              wrapper: {
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-                justifyContent: 'flex-start',
-                marginTop: 10,
-                marginLeft: -10,
-              }
-            }
-          },
-          right: {
-            title: 'LIKE',
-            style: {
-              label: {
-                backgroundColor: '#77dd77',
-                color: '#FFF',
-                fontSize: 24
+            },
+            right: {
+              title: "LIKE",
+              style: {
+                label: {
+                  backgroundColor: "#77dd77",
+                  color: "#FFF",
+                  fontSize: 24,
+                },
+                wrapper: {
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
+                  marginTop: 10,
+                  marginLeft: 10,
+                },
               },
-              wrapper: {
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                justifyContent: 'flex-start',
-                marginTop: 10,
-                marginLeft: 10,
-              }
-            }
-          }
-        }}
-      >
+            },
+          }}
+        ></Swiper>
+      </View>
+      <View style={styles.bottomContainer}>
         <CardDetails index={index} />
-      </Swiper>
+      </View>
     </View>
   );
 };
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     backgroundColor: "transparent",
-    color: "#FFF"
+    color: "#FFF",
   },
   image: {
     width: 330,
@@ -107,6 +110,9 @@ const styles = StyleSheet.create({
     resizeMode: "stretch",
   },
   bottomContainer: {
+    flex: 0.35,
+  },
+  swiperContainer: {
     flex: 0.35,
   },
   cardDetails: {
