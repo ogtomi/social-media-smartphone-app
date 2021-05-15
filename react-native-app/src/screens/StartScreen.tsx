@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
-import { createStackNavigator } from "@react-navigation/stack";
-import PeopleTabScreen from "./PeopleTabScreen";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { connect, useDispatch } from "react-redux";
+import { signIn, signOut } from "../actions";
+import { TextInput } from "react-native-gesture-handler";
 
 class StartScreen extends React.Component {
   render() {
@@ -12,12 +10,13 @@ class StartScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>What app</Text>
+        <Text style={styles.logo}>CHUJ</Text>
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
             placeholder="Email..."
             placeholderTextColor="#003f5c"
+            onSubmitEditing={this.onSubmit}
           />
         </View>
         <View style={styles.inputView}>
@@ -26,16 +25,20 @@ class StartScreen extends React.Component {
             style={styles.inputText}
             placeholder="Password..."
             placeholderTextColor="#003f5c"
+            onSubmitEditing={this.onSubmit}
           />
         </View>
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity
+          onPress={() => this.props.signIn("someemail", "password")}
+          style={styles.loginBtn}
+        >
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN WITH GOOGLE</Text>
+          <Text style={styles.loginText}>SIGN WITH GOOGLE</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigate("Home")}>
           <Text style={styles.loginText}>Signup</Text>
@@ -45,7 +48,13 @@ class StartScreen extends React.Component {
   }
 }
 
-export default StartScreen;
+const mapStateToProps = (state) => {
+  return { loginData: state.sign };
+};
+
+export default connect(mapStateToProps, { signIn, signOut })(
+  StartScreen
+);
 
 const styles = StyleSheet.create({
   container: {
