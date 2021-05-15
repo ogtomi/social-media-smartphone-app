@@ -1,7 +1,7 @@
 import { SIGN_IN, SIGN_OUT } from "../actions/types";
 
 const INITIAL_STATE = {
-  email: "someemails",
+  email: null,
   password: null,
 };
 

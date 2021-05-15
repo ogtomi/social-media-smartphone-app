@@ -5,7 +5,7 @@ import { Text, View } from "../Themed";
 const Friends = ({loginData}) => {
   return (
     <View>
-      <Text>{loginData.email} Is that it</Text>
+      <Text>{loginData.email} {loginData.password}</Text>
     </View>
   );
 };

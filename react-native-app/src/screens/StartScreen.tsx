@@ -5,6 +5,11 @@ import { signIn, signOut } from "../actions";
 import { TextInput } from "react-native-gesture-handler";
 
 class StartScreen extends React.Component {
+  state = {
+    inputEmail: null,
+    inputPassword: null,
+  }
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -16,7 +21,7 @@ class StartScreen extends React.Component {
             style={styles.inputText}
             placeholder="Email..."
             placeholderTextColor="#003f5c"
-            onSubmitEditing={this.onSubmit}
+            onChangeText={(text) => this.setState({inputEmail: text})}
           />
         </View>
         <View style={styles.inputView}>
@@ -25,14 +30,14 @@ class StartScreen extends React.Component {
             style={styles.inputText}
             placeholder="Password..."
             placeholderTextColor="#003f5c"
-            onSubmitEditing={this.onSubmit}
+            onChangeText={(text) => {this.setState({inputPassword: text})}}
           />
         </View>
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.signIn("someemail", "password")}
+          onPress={() => this.props.signIn(this.state.inputEmail, this.state.inputPassword)}
           style={styles.loginBtn}
         >
           <Text style={styles.loginText}>LOGIN</Text>
