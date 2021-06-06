@@ -6,8 +6,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import Colors from "../../../../constants/Colors";
 import WallPostFullViewHeader from "./WallPostFullViewHeader";
 import WallPostComment from "./WallPostComment";
+import WallPostTextInput from "./WallPostTextInput";
 
-import { Text, View } from "../../Themed";
+import { Text, View, TextInput } from "../../Themed";
 
 const DATA = [
   {
@@ -56,6 +57,7 @@ export interface IWallPostFullViewProps {
   likesNum: number;
   commentsNum: number;
   route: any;
+  focused: boolean;
 }
 
 export default class WallPostFullView extends React.Component<IWallPostFullViewProps> {
@@ -65,6 +67,7 @@ export default class WallPostFullView extends React.Component<IWallPostFullViewP
       contentText,
       likesNum,
       commentsNum,
+      focused,
     } = this.props.route.params;
 
     return (
@@ -79,6 +82,7 @@ export default class WallPostFullView extends React.Component<IWallPostFullViewP
                 commentsNum={commentsNum}
               />
             </View>
+            <WallPostTextInput focused={focused} />
           </>
         }
         style={styles.container}

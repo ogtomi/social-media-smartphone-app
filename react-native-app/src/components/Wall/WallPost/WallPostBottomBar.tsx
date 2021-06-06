@@ -7,14 +7,26 @@ import { Text, View } from "../../Themed";
 
 export default class WallPostBottomBar extends React.Component<
   {},
-  { likeButtonCliked: Boolean }
+  { likeButtonCliked: Boolean;
+    username: string;
+    contentText: string;
+    //contentImage: Image;
+    likesNum: number;
+    commentsNum: number;
+    navigation: any;}
 > {
   constructor(props: any) {
     super(props);
     this.state = {
       likeButtonCliked: false,
+      username: this.props.username,
+      contentText: this.props.contentText,
+      likesNum: this.props.likesNum,
+      commentsNum: this.props.commentsNum,
+      navigation: this.props.navigation,
     };
     this.handlerButtonOnClick = this.handlerButtonOnClick.bind(this);
+    this.handlerCommentOnClick = this.handlerCommentOnClick.bind(this);
   }
   handlerButtonOnClick() {
     if (this.state.likeButtonCliked) {
@@ -26,6 +38,16 @@ export default class WallPostBottomBar extends React.Component<
         likeButtonCliked: true,
       });
     }
+    // send info to database
+  }
+  handlerCommentOnClick() {
+    this.state.navigation.navigate("WallPostFullView", {
+      username: this.state.username,
+      contentText: this.state.contentText,
+      commentsNum: this.state.commentsNum,
+      likesNum: this.state.likesNum,
+      focused: true,
+    })
   }
   render() {
     var likeButtonTextColor;
@@ -59,6 +81,9 @@ export default class WallPostBottomBar extends React.Component<
           icon="comment"
           mode="contained"
           color="darkblue"
+          onPress={() =>
+            {this.handlerCommentOnClick();
+            }}
         >
           comment
         </Button>

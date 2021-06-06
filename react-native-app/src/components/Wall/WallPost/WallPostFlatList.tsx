@@ -104,6 +104,7 @@ export default class WallPostFlatList extends React.Component<IWallPostFlatListP
                   contentText: item.content,
                   commentsNum: item.commentsNum,
                   likesNum: item.likesNum,
+                  focused: false,
                 })
               }
             >
@@ -119,7 +120,13 @@ export default class WallPostFlatList extends React.Component<IWallPostFlatListP
               darkColor={Colors["dark"].postBackgroundColor}
               style={styles.buttonStyles}
             >
-              <WallPostBottomBar />
+              <WallPostBottomBar
+              navigation={this.props.navigation}
+              username={item.user}
+              contentText={item.content}
+              commentsNum={item.commentsNum}
+              likesNum={item.likesNum}
+              />
             </View>
           </View>
         )}

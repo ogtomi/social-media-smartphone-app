@@ -43,9 +43,9 @@ export default class WallPostAuthor extends React.Component<IWallPostAuthorProps
 const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
-    paddingBottom: 10,
+    //paddingBottom: 10,
     marginTop: 5,
-    marginBottom: 5,
+    //marginBottom: 5,
     flexDirection: "row",
     justifyContent: "flex-start",
   },

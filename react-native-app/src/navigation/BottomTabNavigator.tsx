@@ -28,7 +28,10 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Wall"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      tabBarOptions={{ 
+        activeTintColor: Colors[colorScheme].tint,
+        keyboardHidesTabBar: true
+      }}
     >
       <BottomTab.Screen
         name="Wall"
