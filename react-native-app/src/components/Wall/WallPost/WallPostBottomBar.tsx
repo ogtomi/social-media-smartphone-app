@@ -5,6 +5,8 @@ import Colors from "../../../../constants/Colors";
 
 import { Text, View } from "../../Themed";
 
+import axios from 'axios';
+
 export default class WallPostBottomBar extends React.Component<
   {},
   { likeButtonCliked: Boolean;
@@ -13,7 +15,9 @@ export default class WallPostBottomBar extends React.Component<
     //contentImage: Image;
     likesNum: number;
     commentsNum: number;
-    navigation: any;}
+    navigation: any;
+    data: any;
+  }
 > {
   constructor(props: any) {
     super(props);
@@ -24,11 +28,14 @@ export default class WallPostBottomBar extends React.Component<
       likesNum: this.props.likesNum,
       commentsNum: this.props.commentsNum,
       navigation: this.props.navigation,
+      data : [[]],
     };
-    this.handlerButtonOnClick = this.handlerButtonOnClick.bind(this);
+    this.handlerLikeOnClick = this.handlerLikeOnClick.bind(this);
     this.handlerCommentOnClick = this.handlerCommentOnClick.bind(this);
+    this.testGet = this.testGet.bind(this);
   }
-  handlerButtonOnClick() {
+  handlerLikeOnClick() {
+    this.testGet()
     if (this.state.likeButtonCliked) {
       this.setState({
         likeButtonCliked: false,
@@ -49,6 +56,21 @@ export default class WallPostBottomBar extends React.Component<
       focused: true,
     })
   }
+
+  testGet()
+  {
+    var url = 'http://group-project.server127285.nazwa.pl/user';
+    fetch(url)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({data: res})
+      console.log(this.state.data)
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+  };
+
   render() {
     var likeButtonTextColor;
 
@@ -71,7 +93,7 @@ export default class WallPostBottomBar extends React.Component<
           color={likeButtonTextColor}
           disabled={false}
           onPress={() => {
-            this.handlerButtonOnClick();
+            this.handlerLikeOnClick();
           }}
         >
           Like

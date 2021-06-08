@@ -17,14 +17,16 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.test.testAppName",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.test.testAppName"
+      "package": "com.test.testAppName",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
