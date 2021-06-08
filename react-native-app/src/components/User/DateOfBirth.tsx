@@ -1,18 +1,18 @@
 import React from "react";
-import DatePicker from "react-native-datepicker";
+import DatePicker from "@react-native-community/datetimepicker";
 import { View } from "react-native";
 
 export default class DateOfBirth extends React.Component {
   state = {
-    date: "2016-05-15",
+    date: new Date(1598051730000)
   };
 
   render() {
     return (
       <DatePicker
         style={{ width: 200 }}
-        date={this.state.date}
         mode="date"
+        value={this.state.date}
         placeholder="select date"
         format="YYYY-MM-DD"
         minDate="1900-01-01"

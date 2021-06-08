@@ -15,7 +15,7 @@ class StartScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>CHUJ</Text>
+        <Text style={styles.logo}>APP</Text>
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
