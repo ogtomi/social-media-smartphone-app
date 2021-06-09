@@ -12,6 +12,7 @@ import {
 import { ColorSchemeName } from "react-native";
 import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
 import reducers from "./src/reducers";
+import SignUpScreen from "./src/screens/SignUpScreen";
 
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 const Stack = createStackNavigator();
@@ -30,6 +31,10 @@ const App = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
             name="Home"
             component={BottomTabNavigator}
             //options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUpScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

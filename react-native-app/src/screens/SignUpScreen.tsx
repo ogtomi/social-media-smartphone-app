@@ -1,52 +1,67 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
-import { connect, useDispatch } from "react-redux";
-import { signIn, signOut } from "../actions";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createUser } from "../actions";
 import { TextInput } from "react-native-gesture-handler";
+import users from "../apis/users";
 
-class StartScreen extends React.Component {
+class SignUpScreen extends React.Component {
   state = {
-    inputEmail: null,
-    inputPassword: null,
-  }
+    name: null,
+    surname: null,
+    email: null,
+    password: null,
+  };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>APP</Text>
+        <Text style={styles.logo}>Sign up skurwysynie</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Name..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => this.setState({ name: text })}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Surname..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => this.setState({ surname: text })}
+          />
+        </View>
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
             placeholder="Email..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => this.setState({inputEmail: text})}
+            onChangeText={(text) => this.setState({ email: text })}
           />
         </View>
         <View style={styles.inputView}>
           <TextInput
-            secureTextEntry
             style={styles.inputText}
             placeholder="Password..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => {this.setState({inputPassword: text})}}
+            onChangeText={(text) => this.setState({ password: text })}
           />
         </View>
-        <TouchableOpacity onPress={() => navigate("Home")}>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.signIn(this.state.inputEmail, this.state.inputPassword)}
+          onPress={() =>
+            this.props.createUser(
+              this.state.name,
+              this.state.surname,
+              this.state.email,
+              this.state.password
+            )
+          }
           style={styles.loginBtn}
         >
-          <Text style={styles.loginText}>LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>SIGN WITH GOOGLE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigate("SignUp")}>
-          <Text style={styles.loginText}>Signup</Text>
+          <Text style={styles.loginText}>SIGN UP</Text>
         </TouchableOpacity>
       </View>
     );
@@ -54,12 +69,11 @@ class StartScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { loginData: state.sign };
+  return {
+    usersData: state.users,
+  };
 };
-
-export default connect(mapStateToProps, { signIn, signOut })(
-  StartScreen
-);
+export default connect(mapStateToProps, { createUser })(SignUpScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -70,7 +84,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     fontWeight: "bold",
-    fontSize: 50,
+    fontSize: 20,
     color: "#fb5b5a",
     marginBottom: 40,
   },
