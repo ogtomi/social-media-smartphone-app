@@ -1,4 +1,5 @@
-import { SIGN_IN, SIGN_OUT } from "./types";
+import users from "../apis/users";
+import { SIGN_IN, SIGN_OUT, FETCH_USERS } from "./types";
 
 export const signIn = (email, password) => {
   return {
@@ -12,3 +13,8 @@ export const signOut = () => {
     type: SIGN_OUT,
   };
 };
+
+export const fetchUsers = () => async (dispatch) => {
+  const response = await users.get("/user")
+  dispatch({ type: FETCH_USERS, payload: response.data})
+}

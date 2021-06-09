@@ -2,14 +2,17 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Button } from "react-native-paper";
 import Colors from "../../../../constants/Colors";
+import { fetchUsers } from "../../../actions";
 
 import { Text, View } from "../../Themed";
 
-import axios from 'axios';
+import axios from "axios";
+import { connect } from "react-redux";
 
-export default class WallPostBottomBar extends React.Component<
+export class WallPostBottomBar extends React.Component<
   {},
-  { likeButtonCliked: Boolean;
+  {
+    likeButtonCliked: Boolean;
     username: string;
     contentText: string;
     //contentImage: Image;
@@ -28,14 +31,12 @@ export default class WallPostBottomBar extends React.Component<
       likesNum: this.props.likesNum,
       commentsNum: this.props.commentsNum,
       navigation: this.props.navigation,
-      data : [[]],
+      data: [[]],
     };
-    this.handlerLikeOnClick = this.handlerLikeOnClick.bind(this);
-    this.handlerCommentOnClick = this.handlerCommentOnClick.bind(this);
-    this.testGet = this.testGet.bind(this);
   }
-  handlerLikeOnClick() {
-    this.testGet()
+
+  handlerLikeOnClick = () => {
+    this.props.fetchUsers()
     if (this.state.likeButtonCliked) {
       this.setState({
         likeButtonCliked: false,
@@ -47,28 +48,23 @@ export default class WallPostBottomBar extends React.Component<
     }
     // send info to database
   }
-  handlerCommentOnClick() {
+
+  handlerCommentOnClick = () => {
     this.state.navigation.navigate("WallPostFullView", {
       username: this.state.username,
       contentText: this.state.contentText,
       commentsNum: this.state.commentsNum,
       likesNum: this.state.likesNum,
       focused: true,
-    })
+    });
   }
 
-  testGet()
-  {
-    var url = 'http://group-project.server127285.nazwa.pl/user';
-    fetch(url)
-    .then(res => res.json())
-    .then(res => {
-      this.setState({data: res})
-      console.log(this.state.data)
+  renderUsers = () => {
+    return this.props.users.map((user) => {
+      return (
+        console.log({user})
+      )
     })
-    .catch((error) => {
-        console.log(error);
-    });
   };
 
   render() {
@@ -103,9 +99,9 @@ export default class WallPostBottomBar extends React.Component<
           icon="comment"
           mode="contained"
           color="darkblue"
-          onPress={() =>
-            {this.handlerCommentOnClick();
-            }}
+          onPress={() => {
+            this.handlerCommentOnClick();
+          }}
         >
           comment
         </Button>
@@ -113,6 +109,14 @@ export default class WallPostBottomBar extends React.Component<
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    users: Object.values(state.users),
+  };
+};
+
+export default connect(mapStateToProps, { fetchUsers })(WallPostBottomBar);
 
 const styles = StyleSheet.create({
   container: {
