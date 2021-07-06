@@ -33,7 +33,7 @@ class StartScreen extends React.Component {
             onChangeText={(text) => {this.setState({inputPassword: text})}}
           />
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigate("Home")}>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -45,7 +45,7 @@ class StartScreen extends React.Component {
         <TouchableOpacity style={styles.loginBtn}>
           <Text style={styles.loginText}>SIGN WITH GOOGLE</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigate("Home")}>
+        <TouchableOpacity onPress={() => navigate("SignUp")}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
       </View>

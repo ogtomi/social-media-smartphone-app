@@ -2,18 +2,25 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Button } from "react-native-paper";
 import Colors from "../../../../constants/Colors";
+import { fetchUsers } from "../../../actions";
 
 import { Text, View } from "../../Themed";
 
-export default class WallPostBottomBar extends React.Component<
+import axios from "axios";
+import { connect } from "react-redux";
+
+export class WallPostBottomBar extends React.Component<
   {},
-  { likeButtonCliked: Boolean;
+  {
+    likeButtonCliked: Boolean;
     username: string;
     contentText: string;
     //contentImage: Image;
     likesNum: number;
     commentsNum: number;
-    navigation: any;}
+    navigation: any;
+    data: any;
+  }
 > {
   constructor(props: any) {
     super(props);
@@ -24,11 +31,12 @@ export default class WallPostBottomBar extends React.Component<
       likesNum: this.props.likesNum,
       commentsNum: this.props.commentsNum,
       navigation: this.props.navigation,
+      data: [[]],
     };
-    this.handlerButtonOnClick = this.handlerButtonOnClick.bind(this);
-    this.handlerCommentOnClick = this.handlerCommentOnClick.bind(this);
   }
-  handlerButtonOnClick() {
+
+  handlerLikeOnClick = () => {
+    this.props.fetchUsers()
     if (this.state.likeButtonCliked) {
       this.setState({
         likeButtonCliked: false,
@@ -40,15 +48,25 @@ export default class WallPostBottomBar extends React.Component<
     }
     // send info to database
   }
-  handlerCommentOnClick() {
+
+  handlerCommentOnClick = () => {
     this.state.navigation.navigate("WallPostFullView", {
       username: this.state.username,
       contentText: this.state.contentText,
       commentsNum: this.state.commentsNum,
       likesNum: this.state.likesNum,
       focused: true,
-    })
+    });
   }
+
+  renderUsers = () => {
+    return this.props.users.map((user) => {
+      return (
+        console.log({user})
+      )
+    })
+  };
+
   render() {
     var likeButtonTextColor;
 
@@ -71,7 +89,7 @@ export default class WallPostBottomBar extends React.Component<
           color={likeButtonTextColor}
           disabled={false}
           onPress={() => {
-            this.handlerButtonOnClick();
+            this.handlerLikeOnClick();
           }}
         >
           Like
@@ -81,9 +99,9 @@ export default class WallPostBottomBar extends React.Component<
           icon="comment"
           mode="contained"
           color="darkblue"
-          onPress={() =>
-            {this.handlerCommentOnClick();
-            }}
+          onPress={() => {
+            this.handlerCommentOnClick();
+          }}
         >
           comment
         </Button>
@@ -91,6 +109,14 @@ export default class WallPostBottomBar extends React.Component<
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    users: Object.values(state.users),
+  };
+};
+
+export default connect(mapStateToProps, { fetchUsers })(WallPostBottomBar);
 
 const styles = StyleSheet.create({
   container: {
