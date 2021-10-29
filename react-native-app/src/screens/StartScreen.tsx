@@ -45,7 +45,7 @@ class StartScreen extends React.Component {
         <TouchableOpacity style={styles.loginBtn}>
           <Text style={styles.loginText}>SIGN WITH GOOGLE</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigate("SignUp")}>
+        <TouchableOpacity onPress={() => navigate("Register")}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
       </View>

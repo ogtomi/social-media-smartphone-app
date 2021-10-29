@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { createUser } from "../actions";
 import { TextInput } from "react-native-gesture-handler";
-import users from "../apis/users";
+import users from "../apis/api";
 
 class SignUpScreen extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class SignUpScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>Sign up skurwysynie</Text>
+        <Text style={styles.logo}>Sign up</Text>
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
